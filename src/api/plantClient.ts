@@ -23,7 +23,7 @@ export class PlantClient {
         });
     }
 
-    async savePlant(): Promise<string> {
+    async savePlant(data: createPlantModel | null): Promise<string> {
         const url = this.baseUrl + "/plants";
         const options = <RequestInit>{
             method: "POST",
@@ -46,3 +46,10 @@ export class PlantClient {
 }
 
 export const plantClient = new PlantClient("https://sheltered-dawn-19866.herokuapp.com");
+
+export type createPlantModel = {
+    name: string;
+    type: string;
+    species: string | null;
+    image: string;
+};

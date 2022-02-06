@@ -6,6 +6,7 @@
 </template>
 <script lang="ts">
 import Header from '@/components/Header.vue';
+import { useVuelidate } from '@vuelidate/core';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
@@ -14,8 +15,7 @@ import { Options, Vue } from 'vue-class-component';
   },
 })
 export default class App extends Vue {
-
-
+  
 }
 </script>
 <style>
