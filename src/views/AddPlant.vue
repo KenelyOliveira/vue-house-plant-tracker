@@ -6,7 +6,7 @@
             v-model="name" />
       </div>
       <div class="form-row">
-        <PlantTypeAndTagSelect v-model="type" />
+        <PlantTypeAndTagSelect :type="type" />
       </div>
       <div class="form-row">
         <input type="text" class="form-control" placeholder="What's the species?" v-model="species" />
@@ -57,6 +57,9 @@ export default class AddPlant extends Vue {
   isInvalid = false;
   
   async save() {
+
+    console.log(this.name, this.type, this.species);
+
     const result = await this.v.$validate;
     if (!result) {
       this.isInvalid = true;

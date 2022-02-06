@@ -1,7 +1,6 @@
 <template>
   <div>
-      <select name="typle" class="form-control">
-          <option value="" selected disabled>Select a type</option>
+      <select name="type" class="form-control" @change="this.$emit('input', v)">
           <option v-for="type in types" v-bind:key="type.Title">
             {{ type.Title }}
           </option>
@@ -15,9 +14,14 @@ import { plantTypeClient } from '@/api/plantTypeClient';
 import { PlantType } from '@/models/PlantType';
 
 @Options({
+  props: {
+    type: String
+  },
+  
 })
 export default class PlantTypeAndTagSelect extends Vue {
-  
+  type: string | null = null;
+
   types: PlantType[] = [];
 
   async mounted(){
