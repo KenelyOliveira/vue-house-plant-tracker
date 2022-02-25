@@ -57,11 +57,11 @@ export default class AddPlant extends Vue {
   isInvalid = false;
   
   async save() {
-    const result = await this.v.$validate;
-    if (!result) {
-      this.isInvalid = true;
-      return;
-    }
+    // const result = await this.v.$validate;
+    // if (!result) {
+    //   this.isInvalid = true;
+    //   return;
+    // }
     
     this.loading = true;
     this.isInvalid = false;
@@ -83,6 +83,7 @@ export default class AddPlant extends Vue {
           type: this.type!,
           species: this.species,
           image: this.image!,
+          active: true
         };
     }
 

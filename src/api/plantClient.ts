@@ -8,7 +8,7 @@ export class PlantClient {
     }
 
     getPlants(): Promise<Plant[]> {
-        const url = this.baseUrl + "/plants";
+        const url = this.baseUrl + "/plant";
         const options = <RequestInit>{
             method: "GET",
             headers: {
@@ -24,7 +24,7 @@ export class PlantClient {
     }
 
     async savePlant(data: createPlantModel | null): Promise<string> {
-        const url = this.baseUrl + "/plants";
+        const url = this.baseUrl + "/plant";
         const content = JSON.stringify(data);
 
         const options = <RequestInit>{
@@ -53,4 +53,5 @@ export type createPlantModel = {
     type: string;
     species: string | null;
     image: string;
+    active: boolean;
 };
