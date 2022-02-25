@@ -26,7 +26,7 @@
 import Header from '@/components/Header.vue';
 
 import { Options, Vue } from 'vue-class-component';
-import { plantClient } from '@/api/plantClient';
+import { createPlantModel, plantClient } from '@/api/plantClient';
 import PlantTypeAndTagSelect from '@/components/PlantTypeAndTagSelect.vue';
 import PictureInput from '@/components/PictureInput.vue';
 import { required } from '@vuelidate/validators'
@@ -57,9 +57,6 @@ export default class AddPlant extends Vue {
   isInvalid = false;
   
   async save() {
-
-    console.log(this.name, this.type, this.species);
-
     const result = await this.v.$validate;
     if (!result) {
       this.isInvalid = true;
@@ -71,7 +68,7 @@ export default class AddPlant extends Vue {
 
     try {
       
-      await plantClient.savePlant(null);
+      await plantClient.savePlant(this.createPlantModel());
 
     } catch (error) {
       console.log(error);
@@ -79,6 +76,15 @@ export default class AddPlant extends Vue {
 
     this.loading = false;
   }
+
+  createPlantModel(): createPlantModel {
+        return {
+          name: this.name!,
+          type: this.type!,
+          species: this.species,
+          image: this.image!,
+        };
+    }
 
 }
 </script>

@@ -25,21 +25,22 @@ export class PlantClient {
 
     async savePlant(data: createPlantModel | null): Promise<string> {
         const url = this.baseUrl + "/plants";
+        const content = JSON.stringify(data);
+
         const options = <RequestInit>{
             method: "POST",
+            body: content,
             headers: {
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             }
         };
-
-        await new Promise(f => setTimeout(f, 1000));
-
-        return Promise.resolve<string>(<any>null);
-        // return fetch(url,  options)
-        // .then(res => res.json())
-        // .then(res => {
-        //     return res as Plant[]
-        // });
+        
+        return fetch(url,  options)
+        .then(res => res.json())
+        .then(res => {
+            return res as string;
+        });
     }
 
     
